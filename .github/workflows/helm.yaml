@@ -17,7 +17,7 @@ jobs:
       - name: Helm lint
         run: helm lint .
       - name: Trivy container scan
-        uses: aquasecurity/trivy-action@v0.11.0
+        uses: aquasecurity/trivy-action@v0.33.1
         with:
           image-ref: nginx:1.24.0
           format: table
