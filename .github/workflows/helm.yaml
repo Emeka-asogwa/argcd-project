@@ -17,11 +17,13 @@ jobs:
       - name: Helm lint
         run: helm lint .
       - name: Trivy container scan
-        uses: aquasecurity/trivy-action@refs/tags/v0.33.1
-        with:
-          image-ref: nginx:1.24.0
-          format: table
-          exit-code: 1  
+        run: |
+          docker pull aquasecurity/trivy:latest
+          docker run --rm aquasecurity/trivy:latest image --exit-code 1 --severity HIGH,CRITICAL nginx:1.24.0
+        # with:
+        #   image-ref: nginx:1.24.0
+        #   format: table
+        #   exit-code: 1  
 
       - name: Render templates
         run: helm template .
