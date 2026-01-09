@@ -20,7 +20,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs' # 'fs' for filesystem scan of the repository
-          ignore-unfixed: true
+          ignore-unfixed: false
           format: 'sarif' # SARIF format for GitHub Advanced Security integration
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'
