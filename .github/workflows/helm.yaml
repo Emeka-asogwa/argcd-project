@@ -19,9 +19,11 @@ jobs:
       - name: Trivy container scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: nginx:1.24.0-alpine
-          format: table
-          exit-code: 1  
+          scan-type: 'fs' # 'fs' for filesystem scan of the repository
+          ignore-unfixed: true
+          format: 'sarif' # SARIF format for GitHub Advanced Security integration
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
 
       - name: Render templates
         run: helm template .
