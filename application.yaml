@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: payment
+  namespace: argocd # must be where Argo CD is installed
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Emeka-asogwa/argcd-project.git
+    targetRevision: HEAD
+    path: . # path to your payment Helm chart
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: payment # namespace where you want to deploy payment
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
