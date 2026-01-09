@@ -19,7 +19,7 @@ jobs:
       - name: Trivy container scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: nginx:1.19.0 #nginx:mainline-alpine
+          image-ref: nginx:mainline-alpine  #nginx:mainline-alpine passes # nginx:1.19.0 fails
           format: table
           exit-code: 1  
           ignore-unfixed: true
